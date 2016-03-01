@@ -1,0 +1,19 @@
+version: '2'
+services:
+  tinkuy-nodebb:
+    build: ./nodebb
+    links:
+      - tinkuy-redis
+    ports:
+      - "4567:4567"
+  tinkuy-redis:
+    image: redis:3
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    links:
+      - tinkuy-nodebb
+    ports:
+      - "0.0.0.0:8000:80"
