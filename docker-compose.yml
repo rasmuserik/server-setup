@@ -6,14 +6,22 @@ services:
       - tinkuy-redis
     ports:
       - "4567:4567"
+    volumes: 
+      - tinkuy-nodebb:/nodebb
+
   tinkuy-redis:
     image: redis:3
+    volumes: 
+      - tinkuy-redis:/data
 
   nginx:
     image: nginx
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - /solsort/gh/whale/nginx.conf:/etc/nginx/nginx.conf:ro
     links:
       - tinkuy-nodebb
     ports:
-      - "0.0.0.0:8000:80"
+      - "0.0.0.0:80:80"
+volumes:
+  tinkuy-nodebb: {"driver": "local"}
+  tinkuy-redis: {"driver": "local"}
