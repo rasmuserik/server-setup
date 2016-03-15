@@ -1,5 +1,5 @@
 {
-    "url": "http://localhost:4567",
+    "url": "https://tinkuy-forum.solsort.com/",
     "secret": "bda638b1-a844-439b-8866-aac3b807f564",
     "database": "redis",
     "port": 4567,
