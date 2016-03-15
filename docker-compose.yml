@@ -5,18 +5,19 @@ services:
     build: ./nodebb
     links:
       - tinkuy-redis
-    ports:
-      - "4567:4567"
     volumes:
       - ./config/nodebb.config.json:/nodebb/config.json:ro
       - tinkuy-nodebb:/nodebb/public/uploads
-
   tinkuy-redis:
     restart: always
     image: redis:3
     volumes: 
       - tinkuy-redis:/data
-
+  couchdb:
+    restart: always
+    image: couchdb:1
+    volumes: 
+      - couchdb:/usr/local/var/lib/couchdb
   nginx:
     restart: always
     image: nginx
@@ -24,8 +25,10 @@ services:
       - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
     links:
       - tinkuy-nodebb
+      - couchdb
     ports:
       - "0.0.0.0:80:80"
 volumes:
+  couchdb: {"driver": "local"}
   tinkuy-nodebb: {"driver": "local"}
   tinkuy-redis: {"driver": "local"}
