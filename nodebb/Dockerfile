@@ -6,7 +6,7 @@ RUN git clone https://github.com/NodeBB/NodeBB /nodebb
 WORKDIR /nodebb
 
 RUN npm install
-RUN npm install nodebb-plugin-emailer-mailgun
+RUN npm install nodebb-plugin-emailer-mailgun nodebb-plugin-sso-facebook nodebb-plugin-sso-google
 
 EXPOSE 4567
 EXPOSE 443
