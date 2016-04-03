@@ -1,7 +1,7 @@
 FROM node:0.12
 
 #RUN git clone -b v1.x.x https://github.com/NodeBB/NodeBB /nodebb
-RUN git clone -b v1.0.1 https://github.com/NodeBB/NodeBB /nodebb
+RUN git clone -b v1.0.2 https://github.com/NodeBB/NodeBB /nodebb
 
 WORKDIR /nodebb
 
