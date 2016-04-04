@@ -28,6 +28,14 @@ services:
       - couchdb
     ports:
       - "0.0.0.0:80:80"
+  caddy:
+    restart: always
+    build: ./caddy
+    links:
+      - tinkuy-nodebb
+      - couchdb
+    ports:
+      - "0.0.0.0:443:443"
 volumes:
   couchdb: {"driver": "local"}
   tinkuy-nodebb: {"driver": "local"}
