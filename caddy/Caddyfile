@@ -1,4 +1,4 @@
-localhost, tinkuy-forum.solsort.com, forum.tinkuy.com {
+forum.tinkuy.dk {
   proxy / http://tinkuy-nodebb:4567 {
     websocket
   }

@@ -1,5 +1,5 @@
 {
-    "url": "http://forum.tinkuy.dk/",
+    "url": "https://forum.tinkuy.dk/",
     "secret": "bda638b1-a844-439b-8866-aac3b807f564",
     "database": "redis",
     "port": 4567,
