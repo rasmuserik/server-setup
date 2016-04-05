@@ -31,6 +31,7 @@ services:
       PIWIK_MYSQL_PASSWORD: $PW2
       PIWIK_MYSQL_HOST: piwik-mysql
       PIWIK_ADMIN_PASSWORD: $PW2
+      SITE_URL: https://solsort.com
   rasmuserik-mysql:
     image: mysql
     environment:
