@@ -36,6 +36,11 @@ services:
       - 8001:80
     volumes:
       - rasmuserik-wordpress:/var/www/html
+  mysql-admin:
+    restart: always
+    image: clue/adminer
+    links:
+      - rasmuserik-mysql
   caddy:
     restart: always
     build: ./caddy
@@ -43,6 +48,7 @@ services:
       - tinkuy-nodebb
       - couchdb
       - rasmuserik
+      - mysql-admin
     volumes: 
       - ./config/Caddyfile:/caddy/Caddyfile:ro
       - caddy:/root/.caddy

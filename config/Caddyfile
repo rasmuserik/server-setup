@@ -2,6 +2,9 @@ http://rasmuserik.localhost, http://localhost, rasmuserik.solsort.com {
   cors
   proxy / http://rasmuserik
 }
+http://mysql.localhost, mysql.solsort.com {
+  proxy / http://mysql-admin
+}
 http://couch.localhost, couch.solsort.com {
   cors
   proxy / http://couchdb:5984
