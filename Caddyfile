@@ -1,4 +1,4 @@
-http://piwik.localhost, piwik.solsort.com {
+http://piwik.localhost, piwik.solsort.com, piwik.rasmuserik.com {
   proxy / http://piwik {
     proxy_header Host {host}
     proxy_header X-Real-IP {remote}
