@@ -1,1 +1,1 @@
-sudo tar xpPjf ~/backup/whale-latest.tar.bz2
+xzcat ~/backup/whale-latest.tar.xz | sudo tar xvpP

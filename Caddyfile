@@ -1,6 +1,7 @@
 http://rasmuserik.localhost, http://localhost, rasmuserik.solsort.com {
+  root /rasmuserik/
+  fastcgi / rasmuserik:9000
   cors
-  proxy / http://rasmuserik
 }
 http://mysql.localhost, mysql.solsort.com {
   proxy / http://mysql-admin

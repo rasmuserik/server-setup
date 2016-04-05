@@ -6,7 +6,7 @@ services:
     links:
       - tinkuy-redis
     volumes:
-      - ./config/nodebb.config.json:/nodebb/config.json:ro
+      - ./tinkuy-nodebb.config.json:/nodebb/config.json:ro
       - tinkuy-nodebb:/nodebb/public/uploads
   tinkuy-redis:
     restart: always
@@ -26,14 +26,12 @@ services:
       - rasmuserik-mysql:/var/lib/mysql
   rasmuserik:
     restart: always
-    image: wordpress
+    image: wordpress:fpm
     links:
       - rasmuserik-mysql
     environment:
       WORDPRESS_DB_HOST: rasmuserik-mysql
       WORDPRESS_DB_PASSWORD: $PW1
-    ports:
-      - 8001:80
     volumes:
       - rasmuserik-wordpress:/var/www/html
   mysql-admin:
@@ -50,8 +48,9 @@ services:
       - rasmuserik
       - mysql-admin
     volumes: 
-      - ./config/Caddyfile:/caddy/Caddyfile:ro
+      - ./Caddyfile:/caddy/Caddyfile:ro
       - caddy:/root/.caddy
+      - rasmuserik-wordpress:/rasmuserik
     ports:
       - "0.0.0.0:80:80"
       - "0.0.0.0:443:443"
