@@ -1,3 +1,11 @@
+http://piwik.localhost, piwik.solsort.com {
+  proxy / http://piwik {
+    proxy_header Host {host}
+    proxy_header X-Real-IP {remote}
+    proxy_header X-Forwarded-Proto {scheme}
+  }
+  cors
+}
 http://annevoel.localhost, annevoel.solsort.com {
   proxy / http://annevoel {
     proxy_header Host {host}

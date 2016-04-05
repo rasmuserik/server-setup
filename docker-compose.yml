@@ -18,6 +18,19 @@ services:
     image: couchdb:1
     volumes: 
       - couchdb:/usr/local/var/lib/couchdb
+  piwik-mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: $PW2
+    volumes:
+      - piwik-mysql:/var/lib/mysql
+  piwik:
+    image: marvambass/piwik
+    environment:
+      PIWIK_MYSQL_USER: root
+      PIWIK_MYSQL_PASSWORD: $PW2
+      PIWIK_MYSQL_HOST: piwik-mysql
+      PIWIK_ADMIN_PASSWORD: $PW2
   rasmuserik-mysql:
     image: mysql
     environment:
@@ -64,6 +77,7 @@ services:
       - rasmuserik
       - annevoel 
       - mysql-admin
+      - piwik
     volumes: 
       - ./Caddyfile:/caddy/Caddyfile:ro
       - caddy:/root/.caddy
@@ -79,3 +93,4 @@ volumes:
   rasmuserik-mysql: {"driver": "local"}
   annevoel-wordpress: {"driver": "local"}
   annevoel-mysql: {"driver": "local"}
+  piwik-mysql: {"driver": "local"}
