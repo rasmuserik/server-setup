@@ -6,7 +6,7 @@ http://annevoel.localhost, annevoel.solsort.com {
   }
   cors
 }
-http://rasmuserik.localhost, rasmuserik.solsort.com {
+http://rasmuserik.localhost, rasmuserik.solsort.com, blog.rasmuserik.com {
   proxy / http://rasmuserik {
     proxy_header Host {host}
     proxy_header X-Real-IP {remote}
