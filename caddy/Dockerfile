@@ -9,8 +9,6 @@ RUN mkdir /caddy; \
     cd /caddy; \
     curl 'https://caddyserver.com/download/build?os=linux&arch=amd64&features=cors' | tar xvz
 
-ADD Caddyfile Caddyfile
-
 EXPOSE 443
 EXPOSE 80
 

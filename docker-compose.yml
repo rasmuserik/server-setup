@@ -24,10 +24,14 @@ services:
     links:
       - tinkuy-nodebb
       - couchdb
+    volumes: 
+      - ./config/Caddyfile:/caddy/Caddyfile:ro
+      - caddy:/root/.caddy
     ports:
       - "0.0.0.0:80:80"
       - "0.0.0.0:443:443"
 volumes:
+  caddy: {"driver": "local"}
   couchdb: {"driver": "local"}
   tinkuy-nodebb: {"driver": "local"}
   tinkuy-redis: {"driver": "local"}
