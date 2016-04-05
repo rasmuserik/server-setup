@@ -6,7 +6,7 @@ http://piwik.localhost, piwik.solsort.com, piwik.rasmuserik.com {
   }
   cors
 }
-http://annevoel.localhost, annevoel.solsort.com {
+http://annevoel.localhost, annevoel.solsort.com, www.annevoel.dk {
   proxy / http://annevoel {
     proxy_header Host {host}
     proxy_header X-Real-IP {remote}
