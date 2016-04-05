@@ -34,6 +34,22 @@ services:
       WORDPRESS_DB_PASSWORD: $PW1
     volumes:
       - rasmuserik-wordpress:/var/www/html
+  annevoel-mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: $PW1
+    volumes:
+      - annevoel-mysql:/var/lib/mysql
+  annevoel:
+    restart: always
+    image: wordpress
+    links:
+      - annevoel-mysql
+    environment:
+      WORDPRESS_DB_HOST: annevoel-mysql
+      WORDPRESS_DB_PASSWORD: $PW1
+    volumes:
+      - annevoel-wordpress:/var/www/html
   mysql-admin:
     restart: always
     image: clue/adminer
@@ -46,6 +62,7 @@ services:
       - tinkuy-nodebb
       - couchdb
       - rasmuserik
+      - annevoel 
       - mysql-admin
     volumes: 
       - ./Caddyfile:/caddy/Caddyfile:ro
@@ -60,3 +77,5 @@ volumes:
   tinkuy-redis: {"driver": "local"}
   rasmuserik-wordpress: {"driver": "local"}
   rasmuserik-mysql: {"driver": "local"}
+  annevoel-wordpress: {"driver": "local"}
+  annevoel-mysql: {"driver": "local"}

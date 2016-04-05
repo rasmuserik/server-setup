@@ -1,4 +1,12 @@
-http://rasmuserik.localhost, http://localhost, rasmuserik.solsort.com {
+http://annevoel.localhost, annevoel.solsort.com {
+  proxy / http://annevoel {
+    proxy_header Host {host}
+    proxy_header X-Real-IP {remote}
+    proxy_header X-Forwarded-Proto {scheme}
+  }
+  cors
+}
+http://rasmuserik.localhost, rasmuserik.solsort.com {
   proxy / http://rasmuserik {
     proxy_header Host {host}
     proxy_header X-Real-IP {remote}
