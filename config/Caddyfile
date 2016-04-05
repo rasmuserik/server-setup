@@ -1,3 +1,11 @@
+http://rasmuserik.localhost, http://localhost, rasmuserik.solsort.com {
+  cors
+  proxy / http://rasmuserik
+}
+http://couch.localhost, couch.solsort.com {
+  cors
+  proxy / http://couchdb:5984
+}
 http://tinkuy-forum.localhost, tinkuy-forum.solsort.com, forum.tinkuy.dk {
   proxy / http://tinkuy-nodebb:4567 {
     websocket

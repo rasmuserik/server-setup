@@ -18,12 +18,31 @@ services:
     image: couchdb:1
     volumes: 
       - couchdb:/usr/local/var/lib/couchdb
+  rasmuserik-mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: $PW1
+    volumes:
+      - rasmuserik-mysql:/var/lib/mysql
+  rasmuserik:
+    restart: always
+    image: wordpress
+    links:
+      - rasmuserik-mysql
+    environment:
+      WORDPRESS_DB_HOST: rasmuserik-mysql
+      WORDPRESS_DB_PASSWORD: $PW1
+    ports:
+      - 8001:80
+    volumes:
+      - rasmuserik-wordpress:/var/www/html
   caddy:
     restart: always
     build: ./caddy
     links:
       - tinkuy-nodebb
       - couchdb
+      - rasmuserik
     volumes: 
       - ./config/Caddyfile:/caddy/Caddyfile:ro
       - caddy:/root/.caddy
@@ -35,3 +54,5 @@ volumes:
   couchdb: {"driver": "local"}
   tinkuy-nodebb: {"driver": "local"}
   tinkuy-redis: {"driver": "local"}
+  rasmuserik-wordpress: {"driver": "local"}
+  rasmuserik-mysql: {"driver": "local"}
