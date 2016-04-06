@@ -19,12 +19,14 @@ services:
     volumes: 
       - couchdb:/usr/local/var/lib/couchdb
   piwik-mysql:
+    restart: always
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: $PW2
     volumes:
       - piwik-mysql:/var/lib/mysql
   piwik:
+    restart: always
     image: marvambass/piwik
     environment:
       PIWIK_MYSQL_USER: root
@@ -33,6 +35,7 @@ services:
       PIWIK_ADMIN_PASSWORD: $PW2
       SITE_URL: https://solsort.com
   rasmuserik-mysql:
+    restart: always
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: $PW1
@@ -49,6 +52,7 @@ services:
     volumes:
       - rasmuserik-wordpress:/var/www/html
   annevoel-mysql:
+    restart: always
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: $PW1
