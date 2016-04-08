@@ -1,3 +1,7 @@
+http://apps.localhost, apps.solsort.com {
+  root /apps
+}
+
 http://piwik.localhost, piwik.solsort.com, piwik.rasmuserik.com {
   proxy / http://piwik {
     proxy_header Host {host}

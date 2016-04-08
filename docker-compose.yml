@@ -86,6 +86,7 @@ services:
     volumes: 
       - ./Caddyfile:/caddy/Caddyfile:ro
       - caddy:/root/.caddy
+      - ../apps:/apps
     ports:
       - "0.0.0.0:80:80"
       - "0.0.0.0:443:443"
