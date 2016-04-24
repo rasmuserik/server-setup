@@ -27,8 +27,10 @@ http://rasmuserik.localhost, rasmuserik.solsort.com, blog.rasmuserik.com, blog.s
   cors
 }
 http://fmproxy.localhost, fmproxy.solsort.com {
-  proxy_header Host app.fmtools.dk
-  proxy / http://app.fmtools.dk
+  proxy / http://app.fmtools.dk {
+    proxy_header Host app.fmtools.dk
+  }
+  cors
 }
 http://mysql.localhost, mysql.solsort.com {
   proxy / http://mysql-admin
