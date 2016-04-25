@@ -30,6 +30,8 @@ http://fmproxy.localhost, fmproxy.solsort.com {
   proxy / http://app.fmtools.dk {
     proxy_header Host app.fmtools.dk
   }
+  header / Access-Control-Allow-Headers Content-Type
+  header / Access-Control-Allow-Credentials true
   cors
 }
 http://mysql.localhost, mysql.solsort.com {
