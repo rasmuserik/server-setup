@@ -35,6 +35,14 @@ http://fmproxy.localhost, fmproxy.solsort.com {
 http://mysql.localhost, mysql.solsort.com {
   proxy / http://mysql-admin
 }
+http://alive.localhost, alive.solsort.com {
+  proxy / http://alive {
+    proxy_header Host {host}
+    proxy_header X-Real-IP {remote}
+    proxy_header X-Forwarded-Proto {scheme}
+  }
+  cors
+}
 http://couch.localhost, couch.solsort.com {
   cors
   proxy / http://couchdb:5984
