@@ -55,7 +55,9 @@ http://tinkuy-forum.localhost, tinkuy-forum.solsort.com, forum.tinkuy.dk {
   }
 }
 mobibl.solsort.com {
-  git github.com/solsort/mobibl mobibl
+  git github.com/solsort/mobibl mobibl {
+    hook /git-update
+  }
   root mobibl
   cors
 }
