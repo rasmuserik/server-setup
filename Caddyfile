@@ -54,3 +54,8 @@ http://tinkuy-forum.localhost, tinkuy-forum.solsort.com, forum.tinkuy.dk {
     websocket
   }
 }
+mobibl.solsort.com {
+  git github.com/solsort/mobibl mobibl
+  root mobibl
+  cors
+}
