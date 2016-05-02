@@ -1,0 +1,56 @@
+http://apps.localhost, apps.solsort.com {
+  root /apps
+}
+
+http://piwik.localhost, piwik.solsort.com, piwik.rasmuserik.com {
+  proxy / http://piwik {
+    proxy_header Host {host}
+    proxy_header X-Real-IP {remote}
+    proxy_header X-Forwarded-Proto {scheme}
+  }
+  cors
+}
+http://annevoel.localhost, annevoel.solsort.com, www.annevoel.dk {
+  proxy / http://annevoel {
+    proxy_header Host {host}
+    proxy_header X-Real-IP {remote}
+    proxy_header X-Forwarded-Proto {scheme}
+  }
+  cors
+}
+http://rasmuserik.localhost, rasmuserik.solsort.com, blog.rasmuserik.com, blog.solsort.com, rasmuserik.com, www.rasmuserik.com {
+  proxy / http://rasmuserik {
+    proxy_header Host {host}
+    proxy_header X-Real-IP {remote}
+    proxy_header X-Forwarded-Proto {scheme}
+  }
+  cors
+}
+http://fmproxy.localhost, fmproxy.solsort.com {
+  proxy / http://app.fmtools.dk {
+    proxy_header Host app.fmtools.dk
+  }
+  header / Access-Control-Allow-Headers Content-Type
+  header / Access-Control-Allow-Credentials true
+  cors
+}
+http://mysql.localhost, mysql.solsort.com {
+  proxy / http://mysql-admin
+}
+http://alive.localhost, alive.solsort.com {
+  proxy / http://alive {
+    proxy_header Host {host}
+    proxy_header X-Real-IP {remote}
+    proxy_header X-Forwarded-Proto {scheme}
+  }
+  cors
+}
+http://couch.localhost, couch.solsort.com {
+  cors
+  proxy / http://couchdb:5984
+}
+http://tinkuy-forum.localhost, tinkuy-forum.solsort.com, forum.tinkuy.dk {
+  proxy / http://tinkuy-nodebb:4567 {
+    websocket
+  }
+}
