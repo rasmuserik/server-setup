@@ -6,9 +6,9 @@ for line in open('Caddy-repos'):
     repos = parts[1]
 
     print repos + '.solsort.com {'
-    print '  git github.com/' + user + '/' + repos + ' /' + repos + ' {'
+    print '  git github.com/' + user + '/' + repos + ' {'
     print '    hook /git-update'
     print '  }'
-    print '  root /' + repos + '/' + repos
+    print '  root /apps/' + repos
     print '  cors'
     print '}'
