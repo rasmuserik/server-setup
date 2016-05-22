@@ -59,6 +59,11 @@ fmtools.solsort.com {
     hook /git-update
   }
   root /apps/fmtools
+  proxy /api http://app.fmtools.dk/api {
+    proxy_header Host app.fmtools.dk
+  }
+  header / Access-Control-Allow-Headers Content-Type
+  header / Access-Control-Allow-Credentials true
   cors
 }
 mubackend.solsort.com {
@@ -66,13 +71,6 @@ mubackend.solsort.com {
     hook /git-update
   }
   root /apps/mubackend
-  cors
-}
-apps.solsort.com {
-  git github.com/rasmuserik/apps {
-    hook /git-update
-  }
-  root /apps/apps
   cors
 }
 mobibl.solsort.com {
@@ -89,11 +87,11 @@ html5book.solsort.com {
   root /apps/html5book
   cors
 }
-lemon.solsort.com {
-  git github.com/NewCircleMovement/lemon {
+app-list.solsort.com {
+  git github.com/rasmuserik/app-list {
     hook /git-update
   }
-  root /apps/lemon
+  root /apps/app-list
   cors
 }
 bibapp.solsort.com {
@@ -103,11 +101,11 @@ bibapp.solsort.com {
   root /apps/bibapp
   cors
 }
-app-list.solsort.com {
-  git github.com/rasmuserik/app-list {
+lemon.solsort.com {
+  git github.com/NewCircleMovement/lemon {
     hook /git-update
   }
-  root /apps/app-list
+  root /apps/lemon
   cors
 }
 visualisering-af-relationer.solsort.com {
@@ -138,18 +136,18 @@ morse-code.solsort.com {
   root /apps/morse-code
   cors
 }
-kbh-parking.solsort.com {
-  git github.com/rasmuserik/kbh-parking {
-    hook /git-update
-  }
-  root /apps/kbh-parking
-  cors
-}
 frie-sange.solsort.com {
   git github.com/rasmuserik/frie-sange {
     hook /git-update
   }
   root /apps/frie-sange
+  cors
+}
+kbh-parking.solsort.com {
+  git github.com/rasmuserik/kbh-parking {
+    hook /git-update
+  }
+  root /apps/kbh-parking
   cors
 }
 360-viewer.solsort.com {
@@ -187,6 +185,13 @@ planetcute.solsort.com {
   root /apps/planetcute
   cors
 }
+dkcities.solsort.com {
+  git github.com/rasmuserik/dkcities {
+    hook /git-update
+  }
+  root /apps/dkcities
+  cors
+}
 notescore.solsort.com {
   git github.com/rasmuserik/notescore {
     hook /git-update
@@ -220,13 +225,6 @@ js1k-brownian.solsort.com {
     hook /git-update
   }
   root /apps/js1k-brownian
-  cors
-}
-dkcities.solsort.com {
-  git github.com/rasmuserik/dkcities {
-    hook /git-update
-  }
-  root /apps/dkcities
   cors
 }
 timelog.solsort.com {

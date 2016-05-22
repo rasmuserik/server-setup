@@ -54,3 +54,15 @@ http://tinkuy-forum.localhost, tinkuy-forum.solsort.com, forum.tinkuy.dk {
     websocket
   }
 }
+fmtools.solsort.com {
+  git github.com/solsort/fmtools {
+    hook /git-update
+  }
+  root /apps/fmtools
+  proxy /api http://app.fmtools.dk/api {
+    proxy_header Host app.fmtools.dk
+  }
+  header / Access-Control-Allow-Headers Content-Type
+  header / Access-Control-Allow-Credentials true
+  cors
+}

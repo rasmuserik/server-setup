@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 def get(arr, pos, default):
     try:
         return arr[pos]
