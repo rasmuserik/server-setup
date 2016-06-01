@@ -59,7 +59,10 @@ fmtools.solsort.com {
     hook /git-update
   }
   root /apps/fmtools
-  proxy /api http://app.fmtools.dk/api {
+  proxy /api http://app.fmtools.dk {
+    proxy_header Host app.fmtools.dk
+  }
+  proxy /Help http://app.fmtools.dk {
     proxy_header Host app.fmtools.dk
   }
   header / Access-Control-Allow-Headers Content-Type
