@@ -9,4 +9,4 @@ then
   ssh root@borg.solsort.com "source ~/.pw && cd whale && docker kill whale_${1}_1; docker-compose up -d"
 fi
 
-ssh root@borg.solsort.com "cd whale; docker-compose logs"
+#ssh root@borg.solsort.com "cd whale; docker-compose logs | tail"
