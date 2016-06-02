@@ -40,7 +40,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: $PW1
     volumes:
-      - bornekor-mysql:/var/lib/mysql
+      - bornekor-mysql2:/var/lib/mysql
   bornekor:
     restart: always
     image: wordpress
@@ -50,7 +50,7 @@ services:
       WORDPRESS_DB_HOST: bornekor-mysql
       WORDPRESS_DB_PASSWORD: $PW1
     volumes:
-      - bornekor-wordpress:/var/www/html
+      - bornekor-wordpress2:/var/www/html
   alive-mysql:
     restart: always
     image: mysql
@@ -130,8 +130,8 @@ volumes:
   couchdb: {"driver": "local"}
   tinkuy-nodebb: {"driver": "local"}
   tinkuy-redis: {"driver": "local"}
-  bornekor-wordpress: {"driver": "local"}
-  bornekor-mysql: {"driver": "local"}
+  bornekor-wordpress2: {"driver": "local"}
+  bornekor-mysql2: {"driver": "local"}
   alive-wordpress: {"driver": "local"}
   alive-mysql: {"driver": "local"}
   rasmuserik-wordpress: {"driver": "local"}
