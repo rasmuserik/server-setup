@@ -47,10 +47,10 @@ services:
     links:
       - bornekor-mysql
     environment:
-      WORDPRESS_DB_HOST: alive-mysql
+      WORDPRESS_DB_HOST: bornekor-mysql
       WORDPRESS_DB_PASSWORD: $PW1
     volumes:
-      - alive-wordpress:/var/www/html
+      - bornekor-wordpress:/var/www/html
   alive-mysql:
     restart: always
     image: mysql
