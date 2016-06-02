@@ -45,6 +45,14 @@ http://alive.localhost, alive.solsort.com {
   }
   cors
 }
+http://bornekor.localhost, bornekor.solsort.com {
+  proxy / http://bornekor {
+    proxy_header Host {host}
+    proxy_header X-Real-IP {remote}
+    proxy_header X-Forwarded-Proto {scheme}
+  }
+  cors
+}
 http://couch.localhost, couch.solsort.com {
   cors
   proxy / http://couchdb:5984

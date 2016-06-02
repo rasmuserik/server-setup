@@ -34,6 +34,23 @@ services:
       PIWIK_MYSQL_HOST: piwik-mysql
       PIWIK_ADMIN_PASSWORD: $PW2
       SITE_URL: https://solsort.com
+  bornekor-mysql:
+    restart: always
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: $PW1
+    volumes:
+      - bornekor-mysql:/var/lib/mysql
+  bornekor:
+    restart: always
+    image: wordpress
+    links:
+      - bornekor-mysql
+    environment:
+      WORDPRESS_DB_HOST: alive-mysql
+      WORDPRESS_DB_PASSWORD: $PW1
+    volumes:
+      - alive-wordpress:/var/www/html
   alive-mysql:
     restart: always
     image: mysql
@@ -113,6 +130,8 @@ volumes:
   couchdb: {"driver": "local"}
   tinkuy-nodebb: {"driver": "local"}
   tinkuy-redis: {"driver": "local"}
+  bornekor-wordpress: {"driver": "local"}
+  bornekor-mysql: {"driver": "local"}
   alive-wordpress: {"driver": "local"}
   alive-mysql: {"driver": "local"}
   rasmuserik-wordpress: {"driver": "local"}
