@@ -124,6 +124,8 @@ services:
       - alive
       - mysql-admin
       - piwik
+      - owncloud
+      - bornekor
     volumes: 
       - ./Caddyfile:/caddy/Caddyfile:ro
       - caddy:/root/.caddy
