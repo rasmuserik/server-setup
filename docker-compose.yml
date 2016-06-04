@@ -18,6 +18,13 @@ services:
     image: couchdb:1
     volumes: 
       - couchdb:/usr/local/var/lib/couchdb
+  owncloud-mysql:
+    restart: always
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: $PW3
+    volumes:
+      - owncloud-mysql:/var/lib/mysql
   owncloud:
     # PW3
     restart: always
@@ -148,3 +155,4 @@ volumes:
   annevoel-mysql: {"driver": "local"}
   piwik-mysql: {"driver": "local"}
   owncloud: {"driver": "local"}
+  owncloud-mysql: {"driver": "local"}
