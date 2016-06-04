@@ -29,6 +29,8 @@ services:
     # PW3
     restart: always
     image: owncloud:9
+    links:
+      - owncloud-mysql
     volumes: 
       - owncloud:/var/www/html
   piwik-mysql:
@@ -41,6 +43,8 @@ services:
   piwik:
     restart: always
     image: marvambass/piwik
+    links:
+      - piwik-mysql
     environment:
       PIWIK_MYSQL_USER: root
       PIWIK_MYSQL_PASSWORD: $PW2
