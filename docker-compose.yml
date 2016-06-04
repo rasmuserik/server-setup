@@ -145,3 +145,4 @@ volumes:
   annevoel-wordpress: {"driver": "local"}
   annevoel-mysql: {"driver": "local"}
   piwik-mysql: {"driver": "local"}
+  owncloud: {"driver": "local"}
