@@ -18,6 +18,14 @@ http://annevoel.localhost, annevoel.solsort.com, www.annevoel.dk {
   }
   cors
 }
+http://owncloud.localhost, owncloud.solsort.com {
+  proxy / http://owncloud {
+    proxy_header Host {host}
+    proxy_header X-Real-IP {remote}
+    proxy_header X-Forwarded-Proto {scheme}
+  }
+  cors
+}
 http://rasmuserik.localhost, rasmuserik.solsort.com, blog.rasmuserik.com, blog.solsort.com, rasmuserik.com, www.rasmuserik.com {
   proxy / http://rasmuserik {
     proxy_header Host {host}

@@ -18,6 +18,12 @@ services:
     image: couchdb:1
     volumes: 
       - couchdb:/usr/local/var/lib/couchdb
+  owncloud:
+    # PW3
+    restart: always
+    image: owncloud:9
+    volumes: 
+      - owncloud:/var/www/html
   piwik-mysql:
     restart: always
     image: mysql
