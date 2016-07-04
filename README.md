@@ -1,18 +1,17 @@
-# Docker setup
+# solsort.com website etc. setup
 
-**Status:** currently only experiments / not working yet.
+TODI/IN-PROGRESS: more declarative setup, with configuration as a clojure data struture, which generates docker-configuration, webserver config, as well as static website.
 
-This is intended to turn into the docker-setup for solsort.com, with the following sites
+This is the docker-setup for solsort.com, with various sites.
 
 - tinkuyforum.solsort.com - NodeBB - Redis
 - annevoel.dk - wordpress - mysql
 - rasmuserik.dk - wordpress - mysql
-- solsort.com - wordpress - mysql
-- stats.solsort.com - piwik - mysql
+- solsort.com - static site, also intended to be in this repository
+- piwik.solsort.com - piwik - mysql
 - apps.solsort.com - github:rasmuserik/apps 
-- api.solsort.com - mubackend - couchdb
-- cloud.solsort.com - owncloud - mysql
-- bibes.solsort.com - elastic-search bibdata readonly
+- mubackend.solsort.com - mubackend - couchdb
+- owncloud.solsort.com - owncloud - mysql
+- ...
 
-behind an nginx-proxy with certificates through letsencrypt.
-
+behind an caddy-proxy with certificates through letsencrypt.
