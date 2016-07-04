@@ -1,4 +1,4 @@
-(ns solsort.solsort-com)
+(ns solsort.www)
 
 (defn apps
   (rest

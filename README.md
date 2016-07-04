@@ -1,6 +1,6 @@
 # solsort.com website etc. setup
 
-TODI/IN-PROGRESS: more declarative setup, with configuration as a clojure data struture, which generates docker-configuration, webserver config, as well as static website.
+TODO/IN-PROGRESS: more declarative setup, with configuration as a clojure data struture, which generates docker-configuration, webserver config, as well as static website.
 
 This is the docker-setup for solsort.com, with various sites.
 
