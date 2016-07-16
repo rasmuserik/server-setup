@@ -85,6 +85,13 @@ fmtools.solsort.com {
   header / Access-Control-Allow-Credentials true
   cors
 }
+tinkuy-member-check.solsort.com {
+  git github.com/NewCircleMovement/tinkuy-member-check {
+    hook /git-update
+  }
+  root /apps/tinkuy-member-check
+  cors
+}
 mubackend.solsort.com {
   git github.com/rasmuserik/mubackend {
     hook /git-update
