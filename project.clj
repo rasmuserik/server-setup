@@ -53,10 +53,3 @@
       :externs ["externs.js"]
       :optimizations :advanced
       :pretty-print false}}]})
-
-(do
-  (let [xhr (js/XMLHttpRequest.)
-        hash (js/location.hash.slice 1)
-        ])
-  (log hash)
-  )
