@@ -28,7 +28,7 @@ http://owncloud.localhost, owncloud.solsort.com {
   header / Access-Control-Allow-Credentials true
   cors {
     methods POST,GET,OPTIONS,PUT,DELETE,PROPFIND,PROPPATCH,MKCOL,COPY,MOVE,LOCK,UNLOCK
-    headers Access-Control-Allow-Headers,Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers
+    headers Access-Control-Allow-Headers,Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization
   }
 }
 http://rasmuserik.localhost, rasmuserik.solsort.com, blog.rasmuserik.com, blog.solsort.com, rasmuserik.com, www.rasmuserik.com {
