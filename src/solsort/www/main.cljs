@@ -95,7 +95,7 @@
 (defn clearlog []
   (aset (js/document.getElementById "main") "innerHTML" ""))
 (clearlog)
-(mylog "hello")
+(mylog "hello 2")
 (do
   (let [xhr (js/XMLHttpRequest.)
         userpass (js/location.hash.slice 1) 
@@ -106,7 +106,7 @@
            user
            pass)
     (aset xhr "withCredentials" true)
-  ;  (.setRequestHeader "Authorization" (str "Basic " (js/btoa (str user ":" pass))))
+    (.setRequestHeader "Authorization" (str "Basic " (js/btoa (str user ":" pass))))
     (aset xhr "onload" #(mylog (.-responseText xhr)))
     (.send xhr)
     (aset js/window "asd" xhr)
