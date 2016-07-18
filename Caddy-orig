@@ -24,6 +24,8 @@ http://owncloud.localhost, owncloud.solsort.com {
     proxy_header X-Real-IP {remote}
     proxy_header X-Forwarded-Proto {scheme}
   }
+  header / Access-Control-Allow-Headers Content-Type
+  header / Access-Control-Allow-Credentials true
   cors
 }
 http://rasmuserik.localhost, rasmuserik.solsort.com, blog.rasmuserik.com, blog.solsort.com, rasmuserik.com, www.rasmuserik.com {
