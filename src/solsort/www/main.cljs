@@ -106,7 +106,7 @@
            user
            pass)
     (aset xhr "withCredentials" true)
-    (.setRequestHeader "Authorization" (str "Basic " (js/btoa (str user ":" pass))))
+    (.setRequestHeader xhr "Authorization" (str "Basic " (js/btoa (str user ":" pass))))
     (aset xhr "onload" #(mylog (.-responseText xhr)))
     (.send xhr)
     (aset js/window "asd" xhr)
