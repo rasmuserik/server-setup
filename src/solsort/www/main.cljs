@@ -44,6 +44,7 @@
    (git 2016  7 "solsort/www")
    (git 2016  7 "NewCircleMovement/Tinkuy-Member-Check")
    (web 2016  5 "https://openplatform.dbc.dk" "Den Åbne Platform" "/assets/openplatform.png")
+   (web 2016  5 "https://github.com/solsort/bion" "Bion data format" "https://github.com/solsort/bion/raw/master/icon.jpg")
    (wordpress 2016  5 "alive.solsort.com")
    (git 2016  4 "solsort/MoBibl")
    (web 2016  4 "https://forum.tinkuy.dk" "Tinkuy Forum" "https://forum.tinkuy.dk/uploads/system/site-logo.jpg")
