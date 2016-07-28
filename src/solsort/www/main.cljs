@@ -107,6 +107,47 @@
    :color "#999"}
   }
  'app-style)
+
+
+
+
+#_(def localhost-client-id "cb3c5fedfff7f29b0d7a")
+#_(case (js/localStorage.getItem "login-state")
+  "github-login" (go
+                   (js/localStorage.setItem "login-state" "")
+                   (log 'github-login (.replace js/location.search #".*=" ""))
+                   ; Not possible pure browser-side.
+                   (log (<! (<ajax
+                         "https://github.com/login/oauth/access_token"
+                         #js{:client_id "cb3c5fedfff7f29b0d7a"
+                                   :client_secret "XXXXX"
+                                   :code (.replace js/location.search #".*=" "")})))
+                   )
+  nil)
+
+#_(go
+  (defn <get [url data]
+   (let [c (chan)
+         xhr (js/XMLHttpRequest.)]
+     (aset xhr "onreadystatechange"
+           (fn [a]
+             (when (= 4 (aget xhr "readyState"))
+               (put!close! c (aget xhr "responseText")))))
+     (.open xhr "PUT" url)
+     (.send xhr "{\"message\": \"my commit message\",\"content\": \"bXkgbmV3IGZpbGUgY29udGVudHM=\"}")
+     c))
+ #_(log (<! (<get
+           "https://api.github.com/repos/solsort/www/contents/blah.txt"
+           ))))
+#_(defn github-login []
+  (js/localStorage.setItem "login-state" "github-login")
+  (aset js/location "href"
+        (str "https://github.com/login/oauth/authorize"
+             "?client_id=" localhost-client-id
+             "&scope=public_repo"
+            ; "&state=" (js/Math.random)
+             )))
+; (github-login) 
 (defn main
   ""
   []
