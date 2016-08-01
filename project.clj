@@ -4,7 +4,6 @@
   [[org.clojure/clojure "1.8.0"]
    [org.clojure/clojurescript "1.9.89"]
    [org.clojure/core.async "0.2.385"]
-   [solsort/util "0.1.2"]
    [reagent "0.6.0-rc"]
    [binaryage/devtools "0.6.1"]]
 
@@ -15,7 +14,7 @@
    [lein-bikeshed "0.2.0"]
    [lein-kibit "0.1.2"]]
 
-  :source-paths ["src/"]
+  :source-paths ["src/" "util/src/"]
 
   :profiles
   {:dev
@@ -36,7 +35,7 @@
   :cljsbuild
   {:builds
    [{:id "dev"
-     :source-paths ["src/"]
+     :source-paths ["src/" "util/src/"]
      :figwheel
      {:websocket-host :js-client-host}
      :compiler
@@ -46,7 +45,7 @@
       :output-dir "resources/public/out"
       :source-map-timestamp true }}
     {:id "dist"
-     :source-paths ["src"]
+     :source-paths ["src" "util/src/"]
      :compiler
      {:output-to "index.js"
       :main solsort.www.main
