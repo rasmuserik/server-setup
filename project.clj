@@ -4,6 +4,7 @@
   [[org.clojure/clojure "1.8.0"]
    [org.clojure/clojurescript "1.9.89"]
    [org.clojure/core.async "0.2.385"]
+   [com.rpl/specter "0.11.2"]
    [reagent "0.6.0-rc"]
    [binaryage/devtools "0.6.1"]]
 

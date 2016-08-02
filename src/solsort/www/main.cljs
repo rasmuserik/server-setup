@@ -1,7 +1,9 @@
 (ns solsort.www.main
   (:require-macros
+   [com.rpl.specter.macros :as s :refer [select]]
    [cljs.core.async.macros :refer [go go-loop alt!]])
   (:require
+   [com.rpl.specter :as s]
    [solsort.misc :refer [<blob-url]]
    [solsort.util
     :refer
@@ -12,6 +14,7 @@
    [clojure.data :refer [diff]]
    [clojure.string :as string :refer [replace split blank?]]
    [cljs.core.async :as async :refer [>! <! chan put! take! timeout close! pipe]]))
+;(s/select [:a] {:a 1 :b 2})
 
 (def month-names
   ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"])
