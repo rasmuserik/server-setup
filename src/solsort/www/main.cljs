@@ -81,6 +81,7 @@
    (git 2011  3 "rasmuserik/JS1K-Brownian")
    (git 2011  3 "rasmuserik/JS1K-Rain")
    (git 2011  3 "rasmuserik/JS1K-Sierpinsky")])
+(defn ->f [start & fs] (reduce #(%2 %1) start fs))
 
 (def caddy-base "
 http://piwik.localhost, piwik.solsort.com, piwik.rasmuserik.com {
@@ -219,13 +220,14 @@ http://" (:short-name o) ".localhost, " (:host o) "  {
     :owncloud {"driver" "local"}
     :owncloud-mysql {"driver" "local"}}})
 (defn docker-compose []
-  (let [docker-config
-        (-> docker-base
-            (clj->js))
-        ;; nb add :restart :always to all services
-        ]
-    (js/JSON.stringify docker-config nil 2))
-  )
+  (->f docker-base
+       #(log %)
+       #(assoc % :services
+               (into {} (map (fn [[k v]]
+                               [k (assoc v :restart :always)])
+                             (:services %))))
+       #(clj->js %)
+       #(js/JSON.stringify % nil 2)))
 
 (load-style!
  {:a
