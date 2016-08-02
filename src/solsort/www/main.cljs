@@ -152,8 +152,80 @@ http://" (:short-name o) ".localhost, " (:host o) "  {
   cors
 }")))
     apps)))
+(def docker-base
+  {:version 2
+   :services
+   {"tinkuy-nodebb"
+    {:build "./nodebb"
+      :links [ "tinkuy-redis" ]
+      :volumes [
+        "./tinkuy-nodebb.config.json:/nodebb/config.json:ro"
+        "tinkuy-nodebb:/nodebb/public/uploads" ] }
+    "tinkuy-redis"
+    { :image "redis:3"
+      :volumes [
+        "tinkuy-redis:/data" ] }
+    "couchdb"
+    {:image "couchdb:1"
+      :volumes [ "couchdb:/usr/local/var/lib/couchdb" ] }
+    "owncloud-mysql"
+    {:image "mysql"
+      :environment { "MYSQL_ROOT_PASSWORD" "$PW3" }
+      :volumes [ "owncloud-mysql:/var/lib/mysql" ] }
+    "owncloud"
+    {:image "owncloud:9"
+      :links [ "owncloud-mysql" ]
+      :volumes [ "owncloud:/var/www/html" ] }
+    "piwik-mysql"
+    {:image "mysql"
+      :environment { "MYSQL_ROOT_PASSWORD" "$PW2" }
+      :volumes [ "piwik-mysql:/var/lib/mysql" ] }
+    "piwik"
+    {:image "marvambass/piwik"
+      :links [ "piwik-mysql" ]
+      :environment
+      { "PIWIK_MYSQL_USER" "root"
+        "PIWIK_MYSQL_PASSWORD" "$PW2"
+        "PIWIK_MYSQL_HOST" "piwik-mysql"
+        "PIWIK_ADMIN_PASSWORD" "$PW2"
+        "SITE_URL" "https://solsort.com" } }
+    "mysql-admin"
+    {:image "clue/adminer"
+      :links [ "rasmuserik-mysql" ] }
+    "caddy"
+    {:build "./caddy"
+      :links
+      [ "tinkuy-nodebb"
+        "couchdb"
+        "rasmuserik"
+        "annevoel"
+        "alive"
+        "mysql-admin"
+        "piwik"
+        "owncloud"
+        "bornekor" ]
+      :volumes
+      [ "./Caddyfile:/caddy/Caddyfile:ro"
+        "caddy:/root/.caddy"
+        "../apps:/apps" ]
+      "ports" ["0.0.0.0:80:80" "0.0.0.0:443:443"] }
+    }
+   :volumes
+   {:caddy {"driver" "local"}
+    :couchdb {"driver" "local"}
+    :tinkuy-nodebb {"driver" "local"}
+    :tinkuy-redis {"driver" "local"}
+    :piwik-mysql {"driver" "local"}
+    :owncloud {"driver" "local"}
+    :owncloud-mysql {"driver" "local"}}})
 (defn docker-compose []
-  "...")
+  (let [docker-config
+        (-> docker-base
+            (clj->js))
+        ;; nb add :restart :always to all services
+        ]
+    (js/JSON.stringify docker-config nil 2))
+  )
 
 (load-style!
  {:a
@@ -197,7 +269,7 @@ http://" (:short-name o) ".localhost, " (:host o) "  {
    [:hr]
    (into [:div.entries]
          (map entry apps))
-   [:div {:style {:text-align :left}} 
+   [:div {:style {:text-align :left}}
     [:h1 "Caddyfile"]
     [:pre {:style {:text-align :left}} (caddy-file)]
     [:h1 "docker-compose.yml"]
@@ -238,7 +310,7 @@ http://" (:short-name o) ".localhost, " (:host o) "  {
                  "?client_id=" localhost-client-id
                  "&scope=public_repo"
                                         ; "&state=" (js/Math.random)
-                                        ; (github-login) 
+                                        ; (github-login)
 ))))
 #_(do ; webdav experiments
     (log (map entry apps))
@@ -256,7 +328,7 @@ http://" (:short-name o) ".localhost, " (:host o) "  {
 ;(mylog "hello 2")
     (do
       (let [xhr (js/XMLHttpRequest.)
-            userpass (js/location.hash.slice 1) 
+            userpass (js/location.hash.slice 1)
             [user pass] (split userpass #":")]
         (.open xhr "PROPFIND"
                "https://owncloud.solsort.com/remote.php/webdav/"
