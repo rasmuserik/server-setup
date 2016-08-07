@@ -15,6 +15,46 @@
    [clojure.string :as string :refer [replace split blank?]]
    [cljs.core.async :as async :refer [>! <! chan put! take! timeout close! pipe]]))
 ;(s/select [:a] {:a 1 :b 2})
+(defonce github-token
+  (if (.startsWith js/location.hash "#solsortgithub=")
+    (let [token (aget (.split js/location.hash "=") 1)]
+      (js/localStorage.setItem "www-token" token)
+      token)
+    (js/localStorage.getItem "www-token")))
+(defn <myjax [url content]
+  (let [method (if content "PUT" "GET")
+        c (chan)
+        xhr (js/XMLHttpRequest.)]
+    (aset xhr "onreadystatechange"
+          (fn [a]
+            (log 'ready-state (aget xhr "readyState"))
+            (when (= 4 (aget xhr "readyState"))
+              (put!close! c (JSON.parse (aget xhr "responseText"))))))
+    (.open xhr method url)
+    (.setRequestHeader xhr "Authorization" (str "token " github-token))
+    (.send xhr content)
+    c))
+
+(defn github-write [repos path content]
+  (go
+    (let [url (str "https://api.github.com/repos/" repos "/contents/" path)
+          result (<! (<myjax url nil))
+          empty (= "Not Found" (aget result "message"))
+          sha (aget result "sha")
+          ]
+      (log 'a)
+      (log 'gh-write 'result result
+           (<! (<myjax
+                url
+                (js/JSON.stringify
+                 (clj->js {:message "automated commit"
+                           :sha sha
+                                      :content (js/btoa content)})))))
+      (go)
+      content
+     )))
+
+;(github-write "rasmuserik/test" "text.txt" "hello-123\n")
 
 (def month-names
   ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"])
@@ -313,6 +353,7 @@ http://" (:short-name o) ".localhost, " (:host o) "  {
     [:h1 "docker-compose.yml"]
     [:pre {:style {:text-align :left}} (docker-compose)]]])
 (render [main])
+
 
 #_(do ; github experiments
     (def localhost-client-id "cb3c5fedfff7f29b0d7a")
