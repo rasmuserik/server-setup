@@ -3,7 +3,9 @@
   "services": {
     "alive": {
       "image": "wordpress",
-      "links": "alive-mysql",
+      "links": [
+        "alive-mysql"
+      ],
       "environment": {
         "WORDPRESS_DB_HOST": "alive-mysql",
         "WORDPRESS_DB_PASSWORD": "$PW1"
@@ -25,7 +27,9 @@
     },
     "annevoel": {
       "image": "wordpress",
-      "links": "annevoel-mysql",
+      "links": [
+        "annevoel-mysql"
+      ],
       "environment": {
         "WORDPRESS_DB_HOST": "annevoel-mysql",
         "WORDPRESS_DB_PASSWORD": "$PW1"
@@ -129,7 +133,9 @@
     },
     "rasmuserik": {
       "image": "wordpress",
-      "links": "rasmuserik-mysql",
+      "links": [
+        "rasmuserik-mysql"
+      ],
       "environment": {
         "WORDPRESS_DB_HOST": "rasmuserik-mysql",
         "WORDPRESS_DB_PASSWORD": "$PW1"
