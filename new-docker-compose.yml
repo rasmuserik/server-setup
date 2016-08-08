@@ -175,16 +175,16 @@
     }
   },
   "volumes": {
-    "alive": {
-      "driver": "local"
-    },
     "alive-mysql": {
       "driver": "local"
     },
-    "annevoel": {
+    "alive-wordpress": {
       "driver": "local"
     },
     "annevoel-mysql": {
+      "driver": "local"
+    },
+    "annevoel-wordpress": {
       "driver": "local"
     },
     "caddy": {
@@ -202,10 +202,10 @@
     "piwik-mysql": {
       "driver": "local"
     },
-    "rasmuserik": {
+    "rasmuserik-mysql": {
       "driver": "local"
     },
-    "rasmuserik-mysql": {
+    "rasmuserik-wordpress": {
       "driver": "local"
     },
     "tinkuy-nodebb": {
