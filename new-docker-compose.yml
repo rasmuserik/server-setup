@@ -1,0 +1,212 @@
+{
+  "version": 2,
+  "services": {
+    "alive": {
+      "image": "wordpress",
+      "links": "alive-mysql",
+      "environment": {
+        "WORDPRESS_DB_HOST": "alive-mysql",
+        "WORDPRESS_DB_PASSWORD": "$PW1"
+      },
+      "volumes": [
+        "alive-wordpress:/var/www/html"
+      ],
+      "restart": "always"
+    },
+    "alive-mysql": {
+      "image": "mysql",
+      "environment": {
+        "MYSQL_ROOT_PASSWORD": "$PW1"
+      },
+      "volumes": [
+        "alive-mysql:/var/www/html"
+      ],
+      "restart": "always"
+    },
+    "annevoel": {
+      "image": "wordpress",
+      "links": "annevoel-mysql",
+      "environment": {
+        "WORDPRESS_DB_HOST": "annevoel-mysql",
+        "WORDPRESS_DB_PASSWORD": "$PW1"
+      },
+      "volumes": [
+        "annevoel-wordpress:/var/www/html"
+      ],
+      "restart": "always"
+    },
+    "annevoel-mysql": {
+      "image": "mysql",
+      "environment": {
+        "MYSQL_ROOT_PASSWORD": "$PW1"
+      },
+      "volumes": [
+        "annevoel-mysql:/var/www/html"
+      ],
+      "restart": "always"
+    },
+    "caddy": {
+      "build": "./caddy",
+      "links": [
+        "tinkuy-nodebb",
+        "couchdb",
+        "rasmuserik",
+        "annevoel",
+        "alive",
+        "mysql-admin",
+        "piwik",
+        "owncloud",
+        "bornekor"
+      ],
+      "volumes": [
+        "./Caddyfile:/caddy/Caddyfile:ro",
+        "caddy:/root/.caddy",
+        "../apps:/apps"
+      ],
+      "ports": [
+        "0.0.0.0:80:80",
+        "0.0.0.0:443:443"
+      ],
+      "restart": "always"
+    },
+    "couchdb": {
+      "image": "couchdb:1",
+      "volumes": [
+        "couchdb:/usr/local/var/lib/couchdb"
+      ],
+      "restart": "always"
+    },
+    "mysql-admin": {
+      "image": "clue/adminer",
+      "links": [
+        "rasmuserik-mysql"
+      ],
+      "restart": "always"
+    },
+    "owncloud": {
+      "image": "owncloud:9",
+      "links": [
+        "owncloud-mysql"
+      ],
+      "volumes": [
+        "owncloud:/var/www/html"
+      ],
+      "restart": "always"
+    },
+    "owncloud-mysql": {
+      "image": "mysql",
+      "environment": {
+        "MYSQL_ROOT_PASSWORD": "$PW3"
+      },
+      "volumes": [
+        "owncloud-mysql:/var/lib/mysql"
+      ],
+      "restart": "always"
+    },
+    "piwik": {
+      "image": "marvambass/piwik",
+      "links": [
+        "piwik-mysql"
+      ],
+      "environment": {
+        "PIWIK_MYSQL_USER": "root",
+        "PIWIK_MYSQL_PASSWORD": "$PW2",
+        "PIWIK_MYSQL_HOST": "piwik-mysql",
+        "PIWIK_ADMIN_PASSWORD": "$PW2",
+        "SITE_URL": "https://solsort.com"
+      },
+      "restart": "always"
+    },
+    "piwik-mysql": {
+      "image": "mysql",
+      "environment": {
+        "MYSQL_ROOT_PASSWORD": "$PW2"
+      },
+      "volumes": [
+        "piwik-mysql:/var/lib/mysql"
+      ],
+      "restart": "always"
+    },
+    "rasmuserik": {
+      "image": "wordpress",
+      "links": "rasmuserik-mysql",
+      "environment": {
+        "WORDPRESS_DB_HOST": "rasmuserik-mysql",
+        "WORDPRESS_DB_PASSWORD": "$PW1"
+      },
+      "volumes": [
+        "rasmuserik-wordpress:/var/www/html"
+      ],
+      "restart": "always"
+    },
+    "rasmuserik-mysql": {
+      "image": "mysql",
+      "environment": {
+        "MYSQL_ROOT_PASSWORD": "$PW1"
+      },
+      "volumes": [
+        "rasmuserik-mysql:/var/www/html"
+      ],
+      "restart": "always"
+    },
+    "tinkuy-nodebb": {
+      "build": "./nodebb",
+      "links": [
+        "tinkuy-redis"
+      ],
+      "volumes": [
+        "./tinkuy-nodebb.config.json:/nodebb/config.json:ro",
+        "tinkuy-nodebb:/nodebb/public/uploads"
+      ],
+      "restart": "always"
+    },
+    "tinkuy-redis": {
+      "image": "redis:3",
+      "volumes": [
+        "tinkuy-redis:/data"
+      ],
+      "restart": "always"
+    }
+  },
+  "volumes": {
+    "alive": {
+      "driver": "local"
+    },
+    "alive-mysql": {
+      "driver": "local"
+    },
+    "annevoel": {
+      "driver": "local"
+    },
+    "annevoel-mysql": {
+      "driver": "local"
+    },
+    "caddy": {
+      "driver": "local"
+    },
+    "couchdb": {
+      "driver": "local"
+    },
+    "owncloud": {
+      "driver": "local"
+    },
+    "owncloud-mysql": {
+      "driver": "local"
+    },
+    "piwik-mysql": {
+      "driver": "local"
+    },
+    "rasmuserik": {
+      "driver": "local"
+    },
+    "rasmuserik-mysql": {
+      "driver": "local"
+    },
+    "tinkuy-nodebb": {
+      "driver": "local"
+    },
+    "tinkuy-redis": {
+      "driver": "local"
+    }
+  }
+}
