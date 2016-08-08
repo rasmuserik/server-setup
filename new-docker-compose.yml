@@ -59,8 +59,7 @@
         "alive",
         "mysql-admin",
         "piwik",
-        "owncloud",
-        "bornekor"
+        "owncloud"
       ],
       "volumes": [
         "./Caddyfile:/caddy/Caddyfile:ro",
