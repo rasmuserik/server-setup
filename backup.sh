@@ -1,6 +1,10 @@
-install -d ~/data/backup
-cd ~/data/backup
-ssh root@borg.solsort.com "tar cvpP /var/lib/docker/volumes/whale_* /var/lib/docker/containers | xz -9 " > whale-latest.tar.xz
-rsync -avz root@bork.solsort.com:/var/lib/docker/containers whale-log
-ln -f whale-latest.tar.xz whale-`date +%A`.tar.xz
-ln -f whale-latest.tar.xz whale-`date +%Gw%V`.tar.xz
+install -d /home/rasmuserik/data/backup/borg
+rsync -avr root@borg.solsort.com:/var/lib/docker/containers/ /home/rasmuserik/data/backup/borg/containers/
+rsync -avr root@borg.solsort.com:whale/ /home/rasmuserik/data/backup/borg/whale/
+rsync -avr root@borg.solsort.com:/var/lib/docker/volumes/ /home/rasmuserik/data/backup/borg/volumes/
+mv /home/rasmuserik/data/backup/borg.prev.tar.xz /home/rasmuserik/data/backup/borg.prevprev.tar.xz 
+mv /home/rasmuserik/data/backup/borg.latest.tar.xz /home/rasmuserik/data/backup/borg.prev.tar.xz 
+tar cvp /home/rasmuserik/data/backup/borg | xz -9 > /home/rasmuserik/data/backup/borg.latest.tar.xz
+cp /home/rasmuserik/data/backup/borg.latest.tar.xz /home/rasmuserik/data/backup/borg-all.`date +%Y-%m`.tar.xz 
+tar cvp /home/rasmuserik/data/backup/borg/containers/*/*.log | xz -9 > /home/rasmuserik/data/backup/borg-logs.`date +%F`.tar.xz
+
