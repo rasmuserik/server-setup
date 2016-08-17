@@ -14,7 +14,11 @@
    [clojure.data :refer [diff]]
    [clojure.string :as string :refer [replace split blank?]]
    [cljs.core.async :as async :refer [>! <! chan put! take! timeout close! pipe]]))
-;(s/select [:a] {:a 1 :b 2})
+
+;; util
+(defn ->f [start & fs] (reduce #(%2 %1) start fs))
+
+;; write file to github-hack
 (defonce github-token
   (if (.startsWith js/location.hash "#solsortgithub=")
     (let [token (aget (.split js/location.hash "=") 1)]
@@ -34,28 +38,31 @@
     (.setRequestHeader xhr "Authorization" (str "token " github-token))
     (.send xhr content)
     c))
-
-(defn github-write [repos path content]
+(defn <github-write [repos path content]
   (go
     (let [url (str "https://api.github.com/repos/" repos "/contents/" path)
           result (<! (<myjax url nil))
           empty (= "Not Found" (aget result "message"))
           sha (aget result "sha")
+          old-content (js/atob (aget result "content"))
           ]
       (log 'a)
       (log 'gh-write 'result result
-           (<! (<myjax
-                url
-                (js/JSON.stringify
-                 (clj->js {:message "automated commit"
-                           :sha sha
-                                      :content (js/btoa content)})))))
+           (when-not (= content old-content)
+            (<! (<myjax
+                 url
+                 (js/JSON.stringify
+                  (clj->js {:message "automated commit"
+                            :sha sha
+                            :content (js/btoa content)}))))))
       (go)
       content
      )))
 
 ;(github-write "rasmuserik/test" "text.txt" "hello-123\n")
 
+
+;; Definitions of apps
 (def month-names
   ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"])
 (defn git [y m id]
@@ -88,9 +95,50 @@
    :short-name (.toLowerCase (replace (replace host #"^www\." "") (js/RegExp "\\..*" "g") ""))
    :host host
    :url (str "https://" host)})
+(def app-list
+  [["git" 2016  0 "solsort/MoBibl"]
+   ["git" 2016  0 "solsort/FMTools"]
+   ["git" 2016  8 "solsort/www"]
+   ["git" 2016  7 "NewCircleMovement/Tinkuy-Member-Check"]
+   ["web" 2016  5 "https://openplatform.dbc.dk" "Den Åbne Platform" "/assets/openplatform.png"]
+   ["web" 2016  5 "https://"git"hub.com/solsort/bion" "Bion data format" "https://"git"hub.com/solsort/bion/raw/master/icon.jpg"]
+   ["wordpress" 2016  5 "alive.solsort.com"]
+   ["web" 2016  4 "https://forum.tinkuy.dk" "Tinkuy Forum" "https://forum.tinkuy.dk/uploads/system/site-logo.jpg"]
+   ["git" 2016  1 "rasmuserik/Apps"]
+   ["git" 2016  1 "rasmuserik/MuBackend"]
+   ["git" 2015 12 "rasmuserik/HTML5book"]
+;   ["git" 2015 12 "rasmuserik/App-List"]
+   ["git" 2015 11 "rasmuserik/BibApp"]
+   ["wordpress" 2015  10 "www.annevoel.dk"]
+   ["git" 2015  9 "NewCircleMovement/Lemon"]
+   ["wordpress" 2015  6 "rasmuserik.com"]
+   ["git" 2014 12 "solsort/Visualisering-af-Relationer"]
+   ["git" 2014  4 "rasmuserik/Sketch-Note-Draw"]
+   ["git" 2014  3 "rasmuserik/Frie-sange"]
+   ["git" 2014  3 "rasmuserik/morse-code"]
+   ["git" 2014  3 "rasmuserik/Single-touch-snake"]
+   ["git" 2014  2 "rasmuserik/KBH-Parking"]
+   ["git" 2014  2 "OneTwo360/360-viewer"]
+   ["git" 2013  9 "rasmuserik/Art-Quiz"]
+   ["git" 2013  4 "rasmuserik/App-Tsartnoc"]
+   ["git" 2012  5 "rasmuserik/BlobShot"]
+   ["git" 2011  8 "rasmuserik/DKCities"]
+   ["git" 2011  8 "rasmuserik/PlanetCute"]
+   ["git" 2011  0 "rasmuserik/Timelog"]
+   ["git" 2011  3 "rasmuserik/NoteScore"]
+   ["git" 2011  0 "rasmuserik/Combigame"]
+   ["git" 2011  3 "rasmuserik/Julia4d"]
+   ["git" 2011  3 "rasmuserik/JS1K-Brownian"]
+   ["git" 2011  3 "rasmuserik/JS1K-Rain"]
+   ["git" 2011  3 "rasmuserik/JS1K-Sierpinsky"]])
+(log (JSON.stringify (clj->js app-list)))
+(log app-list)
+#_(def app2
+  (doall (map #(apply (get {"wordpress" wordpress "web" web "git" git} (first %)) (rest %)) app-list)))
+#_(log app2)
 (def apps
   [(git 2016  0 "solsort/FMTools")
-   (git 2016  7 "solsort/www")
+   (git 2016  8 "solsort/www")
    (git 2016  7 "NewCircleMovement/Tinkuy-Member-Check")
    (web 2016  5 "https://openplatform.dbc.dk" "Den Åbne Platform" "/assets/openplatform.png")
    (web 2016  5 "https://github.com/solsort/bion" "Bion data format" "https://github.com/solsort/bion/raw/master/icon.jpg")
@@ -124,9 +172,12 @@
    (git 2011  3 "rasmuserik/JS1K-Brownian")
    (git 2011  3 "rasmuserik/JS1K-Rain")
    (git 2011  3 "rasmuserik/JS1K-Sierpinsky")])
-(defn ->f [start & fs] (reduce #(%2 %1) start fs))
 
+;; Generate configuration files
 (def caddy-base "
+solsort.com {
+  redir https://www.solsort.com{uri}
+}
 http://piwik.localhost, piwik.solsort.com, piwik.rasmuserik.com {
   proxy / http://piwik {
     proxy_header Host {host}
@@ -196,7 +247,7 @@ http://" (:short-name o) ".localhost, " (:host o) "  {
 }")))
     apps)))
 (def docker-base
-  {:version 2
+  {:version "2"
    :services
    {"tinkuy-nodebb"
     {:build "./nodebb"
@@ -231,11 +282,12 @@ http://" (:short-name o) ".localhost, " (:host o) "  {
       "PIWIK_ADMIN_PASSWORD" "$PW2"
       "SITE_URL" "https://solsort.com"}}
     "mysql-admin"
-    {:image "clue/adminer"
-     :links ["rasmuserik-mysql"]}
+    {:image "clue/adminer" ; TODO
+     :links ["rasmuserik-mysql"]
+     }
     "caddy"
     {:build "./caddy"
-     :links
+     :links ; TODO
      ["tinkuy-nodebb"
       "couchdb"
       "rasmuserik"
@@ -244,7 +296,7 @@ http://" (:short-name o) ".localhost, " (:host o) "  {
       "mysql-admin"
       "piwik"
       "owncloud"
-      "bornekor"]
+      ]
      :volumes
      ["./Caddyfile:/caddy/Caddyfile:ro"
       "caddy:/root/.caddy"
@@ -272,7 +324,7 @@ http://" (:short-name o) ".localhost, " (:host o) "  {
                      mysql (str short-name "-mysql")]
                  [short-name
                   {:image "wordpress"
-                   :links mysql
+                   :links [mysql]
                    :environment
                    {"WORDPRESS_DB_HOST" mysql
                     "WORDPRESS_DB_PASSWORD" "$PW1"}
@@ -296,7 +348,7 @@ http://" (:short-name o) ".localhost, " (:host o) "  {
             (sorted-map)
             (concat
              (:volumes %)
-             (map (fn [o] [(:short-name o) {:driver :local}]) wordpresses)
+             (map (fn [o] [(str (:short-name o) "-wordpress") {:driver :local}]) wordpresses)
              (map (fn [o] [(str (:short-name o) "-mysql") {:driver :local}]) wordpresses))))
          #(assoc % :services
                  (into (sorted-map) (map (fn [[k v]]
@@ -347,11 +399,21 @@ http://" (:short-name o) ".localhost, " (:host o) "  {
    [:hr]
    (into [:div.entries]
          (map entry apps))
-   [:div {:style {:text-align :left}}
-    [:h1 "Caddyfile"]
-    [:pre {:style {:text-align :left}} (caddy-file)]
-    [:h1 "docker-compose.yml"]
-    [:pre {:style {:text-align :left}} (docker-compose)]]])
+   (if github-token
+       [:div {:style {:text-align :left}}
+     [:h1 "Caddyfile"]
+     [:pre {:style {:text-align :left}} (caddy-file)]
+     [:h1 "docker-compose.yml"]
+        [:pre {:style {:text-align :left}} (docker-compose)]
+        [:h1 "Upload "
+         [:button.ui.button
+          {:on-click
+           #(go
+              (<! (<github-write "solsort/www" "new-Caddyfile" (caddy-file)))
+              (<! (<github-write "solsort/www" "new-docker-compose.yml" (docker-compose)))
+             )}
+          "to github"]]]
+       "")])
 (render [main])
 
 
