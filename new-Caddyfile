@@ -45,6 +45,20 @@ fmproxy.solsort.com {
   header / Access-Control-Allow-Credentials true
   cors
 }
+here.solsort.com {
+  git github.com/solsort/Here {
+    hook /git-update
+  }
+  root /apps/here
+  cors
+}
+mobibl.solsort.com {
+  git github.com/solsort/MoBibl {
+    hook /git-update
+  }
+  root /apps/mobibl
+  cors
+}
 fmtools.solsort.com {
   git github.com/solsort/FMTools {
     hook /git-update
@@ -72,13 +86,6 @@ http://alive.localhost, alive.solsort.com  {
     proxy_header X-Real-IP {remote}
     proxy_header X-Forwarded-Proto {scheme}
   }
-  cors
-}
-mobibl.solsort.com {
-  git github.com/solsort/MoBibl {
-    hook /git-update
-  }
-  root /apps/mobibl
   cors
 }
 apps.solsort.com {
