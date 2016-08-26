@@ -95,55 +95,18 @@
    :short-name (.toLowerCase (replace (replace host #"^www\." "") (js/RegExp "\\..*" "g") ""))
    :host host
    :url (str "https://" host)})
-(def app-list
-  [["git" 2016  0 "solsort/MoBibl"]
-   ["git" 2016  0 "solsort/FMTools"]
-   ["git" 2016  8 "solsort/www"]
-   ["git" 2016  7 "NewCircleMovement/Tinkuy-Member-Check"]
-   ["web" 2016  5 "https://openplatform.dbc.dk" "Den Åbne Platform" "/assets/openplatform.png"]
-   ["web" 2016  5 "https://"git"hub.com/solsort/bion" "Bion data format" "https://"git"hub.com/solsort/bion/raw/master/icon.jpg"]
-   ["wordpress" 2016  5 "alive.solsort.com"]
-   ["web" 2016  4 "https://forum.tinkuy.dk" "Tinkuy Forum" "https://forum.tinkuy.dk/uploads/system/site-logo.jpg"]
-   ["git" 2016  1 "rasmuserik/Apps"]
-   ["git" 2016  1 "rasmuserik/MuBackend"]
-   ["git" 2015 12 "rasmuserik/HTML5book"]
-;   ["git" 2015 12 "rasmuserik/App-List"]
-   ["git" 2015 11 "rasmuserik/BibApp"]
-   ["wordpress" 2015  10 "www.annevoel.dk"]
-   ["git" 2015  9 "NewCircleMovement/Lemon"]
-   ["wordpress" 2015  6 "rasmuserik.com"]
-   ["git" 2014 12 "solsort/Visualisering-af-Relationer"]
-   ["git" 2014  4 "rasmuserik/Sketch-Note-Draw"]
-   ["git" 2014  3 "rasmuserik/Frie-sange"]
-   ["git" 2014  3 "rasmuserik/morse-code"]
-   ["git" 2014  3 "rasmuserik/Single-touch-snake"]
-   ["git" 2014  2 "rasmuserik/KBH-Parking"]
-   ["git" 2014  2 "OneTwo360/360-viewer"]
-   ["git" 2013  9 "rasmuserik/Art-Quiz"]
-   ["git" 2013  4 "rasmuserik/App-Tsartnoc"]
-   ["git" 2012  5 "rasmuserik/BlobShot"]
-   ["git" 2011  8 "rasmuserik/DKCities"]
-   ["git" 2011  8 "rasmuserik/PlanetCute"]
-   ["git" 2011  0 "rasmuserik/Timelog"]
-   ["git" 2011  3 "rasmuserik/NoteScore"]
-   ["git" 2011  0 "rasmuserik/Combigame"]
-   ["git" 2011  3 "rasmuserik/Julia4d"]
-   ["git" 2011  3 "rasmuserik/JS1K-Brownian"]
-   ["git" 2011  3 "rasmuserik/JS1K-Rain"]
-   ["git" 2011  3 "rasmuserik/JS1K-Sierpinsky"]])
-(log (JSON.stringify (clj->js app-list)))
-(log app-list)
 #_(def app2
   (doall (map #(apply (get {"wordpress" wordpress "web" web "git" git} (first %)) (rest %)) app-list)))
 #_(log app2)
 (def apps
-  [(git 2016  0 "solsort/FMTools")
+  [(git 2016  0 "solsort/Here")
+   (git 2016  0 "solsort/MoBibl")
+   (git 2016  0 "solsort/FMTools")
    (git 2016  8 "solsort/www")
    (git 2016  7 "NewCircleMovement/Tinkuy-Member-Check")
    (web 2016  5 "https://openplatform.dbc.dk" "Den Åbne Platform" "/assets/openplatform.png")
    (web 2016  5 "https://github.com/solsort/bion" "Bion data format" "https://github.com/solsort/bion/raw/master/icon.jpg")
    (wordpress 2016  5 "alive.solsort.com")
-   (git 2016  4 "solsort/MoBibl")
    (web 2016  4 "https://forum.tinkuy.dk" "Tinkuy Forum" "https://forum.tinkuy.dk/uploads/system/site-logo.jpg")
    (git 2016  1 "rasmuserik/Apps")
    (git 2016  1 "rasmuserik/MuBackend")
