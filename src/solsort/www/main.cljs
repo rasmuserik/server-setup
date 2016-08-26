@@ -193,7 +193,7 @@ fmproxy.solsort.com {
         :web ""
         :git (str "
 " (:short-name o) ".solsort.com {
-  git github.com/" (:id o) " {
+  git https://github.com/" (:id o) ".git {
     hook /git-update
   }
   root /apps/" (:short-name o) "
@@ -372,7 +372,7 @@ http://" (:short-name o) ".localhost, " (:host o) "  {
          [:button.ui.button
           {:on-click
            #(go
-              (<! (<github-write "solsort/www" "new-Caddyfile" (caddy-file)))
+              (<! (<github-write "solsort/www" "Caddyfile" (caddy-file)))
               (<! (<github-write "solsort/www" "new-docker-compose.yml" (docker-compose)))
              )}
           "to github"]]]
