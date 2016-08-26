@@ -46,35 +46,35 @@ fmproxy.solsort.com {
   cors
 }
 here.solsort.com {
-  git github.com/solsort/Here {
+  git https://github.com/solsort/Here.git {
     hook /git-update
   }
   root /apps/here
   cors
 }
 mobibl.solsort.com {
-  git github.com/solsort/MoBibl {
+  git https://github.com/solsort/MoBibl.git {
     hook /git-update
   }
   root /apps/mobibl
   cors
 }
 fmtools.solsort.com {
-  git github.com/solsort/FMTools {
+  git https://github.com/solsort/FMTools.git {
     hook /git-update
   }
   root /apps/fmtools
   cors
 }
 www.solsort.com {
-  git github.com/solsort/www {
+  git https://github.com/solsort/www.git {
     hook /git-update
   }
   root /apps/www
   cors
 }
 tinkuy-member-check.solsort.com {
-  git github.com/NewCircleMovement/Tinkuy-Member-Check {
+  git https://github.com/NewCircleMovement/Tinkuy-Member-Check.git {
     hook /git-update
   }
   root /apps/tinkuy-member-check
@@ -89,28 +89,28 @@ http://alive.localhost, alive.solsort.com  {
   cors
 }
 apps.solsort.com {
-  git github.com/rasmuserik/Apps {
+  git https://github.com/rasmuserik/Apps.git {
     hook /git-update
   }
   root /apps/apps
   cors
 }
 mubackend.solsort.com {
-  git github.com/rasmuserik/MuBackend {
+  git https://github.com/rasmuserik/MuBackend.git {
     hook /git-update
   }
   root /apps/mubackend
   cors
 }
 html5book.solsort.com {
-  git github.com/rasmuserik/HTML5book {
+  git https://github.com/rasmuserik/HTML5book.git {
     hook /git-update
   }
   root /apps/html5book
   cors
 }
 bibapp.solsort.com {
-  git github.com/rasmuserik/BibApp {
+  git https://github.com/rasmuserik/BibApp.git {
     hook /git-update
   }
   root /apps/bibapp
@@ -125,7 +125,7 @@ http://annevoel.localhost, www.annevoel.dk  {
   cors
 }
 lemon.solsort.com {
-  git github.com/NewCircleMovement/Lemon {
+  git https://github.com/NewCircleMovement/Lemon.git {
     hook /git-update
   }
   root /apps/lemon
@@ -140,133 +140,133 @@ http://rasmuserik.localhost, rasmuserik.com  {
   cors
 }
 visualisering-af-relationer.solsort.com {
-  git github.com/solsort/Visualisering-af-Relationer {
+  git https://github.com/solsort/Visualisering-af-Relationer.git {
     hook /git-update
   }
   root /apps/visualisering-af-relationer
   cors
 }
 sketch-note-draw.solsort.com {
-  git github.com/rasmuserik/Sketch-Note-Draw {
+  git https://github.com/rasmuserik/Sketch-Note-Draw.git {
     hook /git-update
   }
   root /apps/sketch-note-draw
   cors
 }
 frie-sange.solsort.com {
-  git github.com/rasmuserik/Frie-sange {
+  git https://github.com/rasmuserik/Frie-sange.git {
     hook /git-update
   }
   root /apps/frie-sange
   cors
 }
 morse-code.solsort.com {
-  git github.com/rasmuserik/morse-code {
+  git https://github.com/rasmuserik/morse-code.git {
     hook /git-update
   }
   root /apps/morse-code
   cors
 }
 single-touch-snake.solsort.com {
-  git github.com/rasmuserik/Single-touch-snake {
+  git https://github.com/rasmuserik/Single-touch-snake.git {
     hook /git-update
   }
   root /apps/single-touch-snake
   cors
 }
 kbh-parking.solsort.com {
-  git github.com/rasmuserik/KBH-Parking {
+  git https://github.com/rasmuserik/KBH-Parking.git {
     hook /git-update
   }
   root /apps/kbh-parking
   cors
 }
 360-viewer.solsort.com {
-  git github.com/OneTwo360/360-viewer {
+  git https://github.com/OneTwo360/360-viewer.git {
     hook /git-update
   }
   root /apps/360-viewer
   cors
 }
 art-quiz.solsort.com {
-  git github.com/rasmuserik/Art-Quiz {
+  git https://github.com/rasmuserik/Art-Quiz.git {
     hook /git-update
   }
   root /apps/art-quiz
   cors
 }
 app-tsartnoc.solsort.com {
-  git github.com/rasmuserik/App-Tsartnoc {
+  git https://github.com/rasmuserik/App-Tsartnoc.git {
     hook /git-update
   }
   root /apps/app-tsartnoc
   cors
 }
 blobshot.solsort.com {
-  git github.com/rasmuserik/BlobShot {
+  git https://github.com/rasmuserik/BlobShot.git {
     hook /git-update
   }
   root /apps/blobshot
   cors
 }
 dkcities.solsort.com {
-  git github.com/rasmuserik/DKCities {
+  git https://github.com/rasmuserik/DKCities.git {
     hook /git-update
   }
   root /apps/dkcities
   cors
 }
 planetcute.solsort.com {
-  git github.com/rasmuserik/PlanetCute {
+  git https://github.com/rasmuserik/PlanetCute.git {
     hook /git-update
   }
   root /apps/planetcute
   cors
 }
 timelog.solsort.com {
-  git github.com/rasmuserik/Timelog {
+  git https://github.com/rasmuserik/Timelog.git {
     hook /git-update
   }
   root /apps/timelog
   cors
 }
 notescore.solsort.com {
-  git github.com/rasmuserik/NoteScore {
+  git https://github.com/rasmuserik/NoteScore.git {
     hook /git-update
   }
   root /apps/notescore
   cors
 }
 combigame.solsort.com {
-  git github.com/rasmuserik/Combigame {
+  git https://github.com/rasmuserik/Combigame.git {
     hook /git-update
   }
   root /apps/combigame
   cors
 }
 julia4d.solsort.com {
-  git github.com/rasmuserik/Julia4d {
+  git https://github.com/rasmuserik/Julia4d.git {
     hook /git-update
   }
   root /apps/julia4d
   cors
 }
 js1k-brownian.solsort.com {
-  git github.com/rasmuserik/JS1K-Brownian {
+  git https://github.com/rasmuserik/JS1K-Brownian.git {
     hook /git-update
   }
   root /apps/js1k-brownian
   cors
 }
 js1k-rain.solsort.com {
-  git github.com/rasmuserik/JS1K-Rain {
+  git https://github.com/rasmuserik/JS1K-Rain.git {
     hook /git-update
   }
   root /apps/js1k-rain
   cors
 }
 js1k-sierpinsky.solsort.com {
-  git github.com/rasmuserik/JS1K-Sierpinsky {
+  git https://github.com/rasmuserik/JS1K-Sierpinsky.git {
     hook /git-update
   }
   root /apps/js1k-sierpinsky
