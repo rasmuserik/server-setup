@@ -102,6 +102,7 @@
   [
    (git 2016  0 "solsort/MoBibl")
    (git 2016  0 "solsort/FMTools")
+   (git 2016  8 "solsort/Dots-and-Boxes")
    (git 2016  8 "solsort/Here")
    (git 2016  8 "solsort/www")
    (git 2016  7 "NewCircleMovement/Tinkuy-Member-Check")
