@@ -45,13 +45,6 @@ fmproxy.solsort.com {
   header / Access-Control-Allow-Credentials true
   cors
 }
-here.solsort.com {
-  git https://github.com/solsort/Here.git {
-    hook /git-update
-  }
-  root /apps/here
-  cors
-}
 mobibl.solsort.com {
   git https://github.com/solsort/MoBibl.git {
     hook /git-update
@@ -64,6 +57,20 @@ fmtools.solsort.com {
     hook /git-update
   }
   root /apps/fmtools
+  cors
+}
+dots-and-boxes.solsort.com {
+  git https://github.com/solsort/Dots-and-Boxes.git {
+    hook /git-update
+  }
+  root /apps/dots-and-boxes
+  cors
+}
+here.solsort.com {
+  git https://github.com/solsort/Here.git {
+    hook /git-update
+  }
+  root /apps/here
   cors
 }
 www.solsort.com {
