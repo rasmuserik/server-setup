@@ -45,6 +45,13 @@ fmproxy.solsort.com {
   header / Access-Control-Allow-Credentials true
   cors
 }
+writings.solsort.com {
+  git https://github.com/rasmuserik/Writings.git {
+    hook /git-update
+  }
+  root /apps/writings
+  cors
+}
 mobibl.solsort.com {
   git https://github.com/solsort/MoBibl.git {
     hook /git-update
