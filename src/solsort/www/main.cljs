@@ -100,6 +100,7 @@
 #_(log app2)
 (def apps
   [
+   (git 2016  0 "rasmuserik/writings")
    (git 2016  0 "solsort/MoBibl")
    (git 2016  0 "solsort/FMTools")
    (git 2016  8 "solsort/Dots-and-Boxes")
