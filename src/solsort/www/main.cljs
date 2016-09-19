@@ -4,7 +4,7 @@
    [cljs.core.async.macros :refer [go go-loop alt!]])
   (:require
    [com.rpl.specter :as s]
-   [solsort.misc :refer [<blob-url]]
+   [solsort.toolbox.misc :refer [<blob-url]]
    [solsort.util
     :refer
     [<p <ajax <seq<! js-seq normalize-css load-style! put!close!
