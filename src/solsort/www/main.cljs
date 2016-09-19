@@ -102,7 +102,8 @@
   [
    (git 2016  0 "rasmuserik/writings")
    (git 2016  0 "solsort/MoBibl")
-   (git 2016  0 "solsort/FMTools")
+   (git 2016  9 "solsort/MiniLD-70")
+   (git 2016  9 "solsort/FMTools")
    (git 2016  8 "solsort/Dots-and-Boxes")
    (git 2016  8 "solsort/Here")
    (git 2016  8 "solsort/www")
