@@ -46,7 +46,7 @@ fmproxy.solsort.com {
   cors
 }
 writings.solsort.com {
-  git https://github.com/rasmuserik/Writings.git {
+  git https://github.com/rasmuserik/writings.git {
     hook /git-update
   }
   root /apps/writings
@@ -57,6 +57,13 @@ mobibl.solsort.com {
     hook /git-update
   }
   root /apps/mobibl
+  cors
+}
+minild-70.solsort.com {
+  git https://github.com/solsort/MiniLD-70.git {
+    hook /git-update
+  }
+  root /apps/minild-70
   cors
 }
 fmtools.solsort.com {
