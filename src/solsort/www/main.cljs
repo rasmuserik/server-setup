@@ -101,8 +101,9 @@
 (def apps
   [
    (git 2016  0 "rasmuserik/writings")
-   (git 2016  0 "solsort/MoBibl")
+   (git 2016  9 "solsort/twister-spinner")
    (git 2016  9 "solsort/MiniLD-70")
+   (git 2016  9 "solsort/MoBibl")
  ;  (git 2016  9 "solsort/FMTools")
    (git 2016  8 "solsort/Dots-and-Boxes")
    (git 2016  8 "solsort/Here")
@@ -357,7 +358,7 @@ http://" (:short-name o) ".localhost, " (:host o) "  {
   []
   [:div.main
    [:h1 "solsort.com ApS"]
-   [:a {:href "https://github.com/rasmuserik"} "open source"]
+   [:a {:href "https://github.com/solsort"} "open source"]
    [:h1 "HTML5 web/widgets/apps"]
 
    [:p
