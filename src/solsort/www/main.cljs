@@ -99,8 +99,8 @@
   (doall (map #(apply (get {"wordpress" wordpress "web" web "git" git} (first %)) (rest %)) app-list)))
 #_(log app2)
 (def apps
-  [
-   (git 2016  0 "rasmuserik/writings")
+  [(git 2016  0 "rasmuserik/writings")
+   (git 2016  9 "solsort/RDF")
    (git 2016  9 "solsort/twister-spinner")
    (git 2016  9 "solsort/MiniLD-70")
    (git 2016  9 "solsort/MoBibl")
