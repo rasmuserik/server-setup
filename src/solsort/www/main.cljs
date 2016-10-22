@@ -100,6 +100,7 @@
 #_(log app2)
 (def apps
   [(git 2016  0 "rasmuserik/Writings")
+   (git 2016  10 "solsort/muBackend")
    (git 2016  9 "solsort/Old-3D-Photos")
    (git 2016  9 "solsort/RDF")
    (git 2016  9 "solsort/Twister-Spinner")
@@ -115,7 +116,6 @@
 ;   (wordpress 2016  5 "alive.solsort.com")
 ;   (web 2016  4 "https://forum.tinkuy.dk" "Tinkuy Forum" "https://forum.tinkuy.dk/uploads/system/site-logo.jpg")
 ;   (git 2016  1 "rasmuserik/Apps")
-;   (git 2016  1 "rasmuserik/MuBackend")
 ;   (git 2015 12 "rasmuserik/HTML5book")
 ;   (git 2015 12 "rasmuserik/App-List")
    (git 2015 11 "rasmuserik/BibApp")
